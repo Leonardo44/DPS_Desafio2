@@ -25,32 +25,16 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Sum from './App/Views/Sum';
+import Subtraction from './App/Views/Subtraction';
+import Multiplication from './App/Views/Multiplication';
+import Division from './App/Views/Division';
+import Factorial from './App/Views/Factorial';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const Tab = createBottomTabNavigator();
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,53 +44,39 @@ const App: () => Node = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Suma') {
+              iconName = focused ? 'add' : 'add-outline';
+            } else if (route.name === 'Resta') {
+              iconName = focused ? 'remove' : 'remove-outline';
+            } else if (route.name === 'Multiplicación') {
+              iconName = focused ? 'close' : 'close-outline';
+            } else if (route.name === 'División') {
+              iconName = focused ? 'reorder-two' : 'reorder-two-outline';
+            } else if (route.name === 'Factorial') {
+              iconName = focused ? 'alert' : 'alert-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'blue',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Suma" component={Sum} />
+        <Tab.Screen name="Resta" component={Subtraction} />
+        <Tab.Screen name="Multiplicación" component={Multiplication} />
+        <Tab.Screen name="División" component={Division} />
+        <Tab.Screen name="Factorial" component={Factorial} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
