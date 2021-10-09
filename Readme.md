@@ -14,20 +14,20 @@
 
 #### Suma de dos números
 
-![Sumar](Screenshots/sum.png)
+![Sumar](Screenshots/sum.PNG)
 
 #### Resta de dos números
 
-![Restar](Screenshots/rest.png)
+![Restar](Screenshots/rest.PNG)
 
 #### Multiplicación de dos números
 
-![Multiplicar](Screenshots/mult.png)
+![Multiplicar](Screenshots/mult.PNG)
 
 #### División de dos números
 
-![Dividir](Screenshots/div.png)
+![Dividir](Screenshots/div.PNG)
 
 #### Factorial de un número
 
-![Factorial](Screenshots/factorial.png)
+![Factorial](Screenshots/factorial.PNG)
