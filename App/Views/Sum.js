@@ -49,7 +49,7 @@ const Sum = ({ navigation }) => {
                     style={ButtonStyle.appButtonContainer}
                     onPress={() => calculate()}
                 >
-                    <Text style={ButtonStyle.appButtonText}>Calcular</Text>
+                    <Text style={ButtonStyle.appButtonText}>Sumar</Text>
                 </TouchableOpacity>
 
                 <View style={FormStyle.responseView}>

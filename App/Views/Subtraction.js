@@ -49,7 +49,7 @@ const Subtraction = ({ navigation }) => {
                     style={ButtonStyle.appButtonContainer}
                     onPress={() => calculate()}
                 >
-                    <Text style={ButtonStyle.appButtonText}>Calcular</Text>
+                    <Text style={ButtonStyle.appButtonText}>Restar</Text>
                 </TouchableOpacity>
 
                 <View style={FormStyle.responseView}>
