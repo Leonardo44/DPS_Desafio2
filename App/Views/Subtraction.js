@@ -1,13 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Button, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Separator from "../Components/Separator";
+import { TextInput } from "react-native-gesture-handler";
 import ButtonStyle from "../styles/ButtonStyle";
+import FormStyle from "../styles/FormStyle";
+import Separator from "../Components/Separator";
 
 const Subtraction = ({ navigation }) => {
+    const [nOne, onChangeNOne] = useState();
+    const [nTwo, onChangeNTwo] = useState();
+    const [nResult, setNResult] = useState();
+
+    const calculate = e => {
+        if (isNaN(nOne) || nOne === undefined ||
+            isNaN(nTwo) || nTwo === undefined) {
+            Alert.alert('Ingrese valores válidos');
+        } else {
+            let result = parseFloat(nOne) - parseFloat(nTwo);
+
+            setNResult(`Respuesta: ${result}`);
+        }
+    };
+    
     return (
         <ScrollView>
+            <View style={FormStyle.container}>
+                <Text></Text>
+                <View>
+                    <Text style={FormStyle.textInput}>Número 1</Text>
+                    <TextInput
+                        style={FormStyle.input}
+                        onChangeText={onChangeNOne}
+                        value={nOne}
+                        keyboardType="numbers-and-punctuation"
+                    ></TextInput>
+                </View>
+                <View>
+                    <Text style={FormStyle.textInput}>Número 2</Text>
+                    <TextInput
+                        style={FormStyle.input}
+                        onChangeText={onChangeNTwo}
+                        value={nTwo}
+                        keyboardType="numbers-and-punctuation"
+                    ></TextInput>
+                </View>
+                <Separator />
+                <TouchableOpacity
+                    style={ButtonStyle.appButtonContainer}
+                    onPress={() => calculate()}
+                >
+                    <Text style={ButtonStyle.appButtonText}>Calcular</Text>
+                </TouchableOpacity>
 
+                <View style={FormStyle.responseView}>
+                    <Text style={FormStyle.responseText}>{nResult}</Text>
+                </View>
+            </View>
         </ScrollView>
     );
 };
